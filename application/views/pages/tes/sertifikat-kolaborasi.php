@@ -195,7 +195,7 @@
         <div class="qrcode">
             <img src="<?= base_url()?>assets/qrcode/<?= $id?>.png" width=100 alt="">
         </div>
-        <div class="nilai"><p style="text-align: center; margin: 0px"><b><?= round($skor)?></b></p></div>
+        <!-- <div class="nilai"><p style="text-align: center; margin: 0px"><b><?= round($skor)?></b></p></div>
         <div class="nama"><p style="text-align: center; margin: 0px"><?= $nama?></p></div>
         <div class="ttl"><p style="text-align: center; margin: 0px"><?= date("M d Y", strtotime($tgl_lahir))?></p></div>
         <div class="t4"><p style="text-align: center; margin: 0px;"><?= $t4_lahir?></p></div>
@@ -207,6 +207,6 @@
         <div class="reading"><p style="text-align: center; margin: 0px"><?= $reading?></p></div>
         <div class="no_doc"><p style="text-align: center; margin: 0px"><?= $no_doc?></p></div>
         <div class="tgl"><p style="text-align: center; margin: 0px"><?= tgl_sertifikat(date("d-m-Y", strtotime($tgl_tes)))?></p></div>
-        <div class="tgl_akhir"><p style="text-align: center; margin: 0px"><?= tgl_sertifikat(date("d-m-Y", strtotime('+2 years', strtotime($tgl_tes))))?></p></div>
+        <div class="tgl_akhir"><p style="text-align: center; margin: 0px"><?= tgl_sertifikat(date("d-m-Y", strtotime('+2 years', strtotime($tgl_tes))))?></p></div> -->
     </body>
 </html>
