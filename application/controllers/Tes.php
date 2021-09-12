@@ -74,6 +74,7 @@ class Tes extends MY_Controller {
     // excel
         public function export($file, $id_tes){
             $tes = $this->tes->get_one("tes", ["md5(id_tes)" => $id_tes]);
+            $tahun = date('y', strtotime($tes['tgl_tes']));
             $soal = $this->tes->get_one("soal", ["id_soal" => $tes['id_soal']]);
             
             $spreadsheet = new Spreadsheet;
@@ -84,21 +85,18 @@ class Tes extends MY_Controller {
                     if($file == "hasil"){
                         $semua_peserta = $this->tes->get_all("peserta_toefl", ["id_tes" => $tes['id_tes']]);
                         $file_data = "Hasil Keseluruhan";
-                    } else if($file == "hard"){
-                        $semua_peserta = $this->tes->get_all("peserta_toefl", ["id_tes" => $tes['id_tes'], "sertifikat" => "Hard File"], "(no_doc + 0)");
-                        $file_data = "Sertifikat Hard File";
-                    } else if($file == "soft"){
-                        $semua_peserta = $this->tes->get_all("peserta_toefl", ["id_tes" => $tes['id_tes'], "sertifikat" => "Soft File"], "(no_doc + 0)");
-                        $file_data = "Sertifikat Soft File";
+                    } else if($file == "sertifikat"){
+                        $semua_peserta = $this->tes->get_all("peserta_toefl", ["id_tes" => $tes['id_tes'], "no_doc <> " => ""], "(no_doc + 0)");
+                        $file_data = "Sertifikat";
                     }
         
                     $spreadsheet->setActiveSheetIndex(0)
-                                ->setCellValue('A1', '<h1>LIST PESERTA ' . $tes['nama_tes'] . '</h1>')
+                                ->setCellValue('A1', 'LIST PESERTA ' . $tes['nama_tes'])
                                 ->setCellValue('A2', 'No')
-                                ->setCellValue('B2', 'Nama')
-                                ->setCellValue('C2', 'TTL')
-                                ->setCellValue('D2', 'Alamat')
-                                ->setCellValue('E2', 'Alamat Pengiriman')
+                                ->setCellValue('B2', 'No. Sertifikat')
+                                ->setCellValue('C2', 'Nama')
+                                ->setCellValue('D2', 'TTL')
+                                ->setCellValue('E2', 'Alamat')
                                 ->setCellValue('F2', 'No. WA')
                                 ->setCellValue('G2', 'email')
                                 ->setCellValue('H2', 'Nilai Listening')
@@ -119,22 +117,25 @@ class Tes extends MY_Controller {
                                 ->mergeCells('E2:E3')
                                 ->mergeCells('F2:F3')
                                 ->mergeCells('G2:G3')
-                                ->mergeCells('N2:N3')
                                 ->mergeCells('H2:I2')
                                 ->mergeCells('J2:K2')
                                 ->mergeCells('L2:M2')
+                                ->mergeCells('N2:N3')
                                 ->mergeCells('A1:N1');
                     
                     $kolom = 4;
                     $nomor = 1;
                     foreach($semua_peserta as $peserta) {
-            
+
+                        if($peserta['no_doc'] != "") $no_doc = "{$tahun}/{$peserta['no_doc']}";
+                        else $no_doc = "-";
+
                             $spreadsheet->setActiveSheetIndex(0)
                                         ->setCellValue('A' . $kolom, $nomor)
-                                        ->setCellValue('B' . $kolom, $peserta['nama'])
-                                        ->setCellValue('C' . $kolom, $peserta['t4_lahir'] . ", " . tgl_indo($peserta['tgl_lahir']))
-                                        ->setCellValue('D' . $kolom, $peserta['alamat'])
-                                        ->setCellValue('E' . $kolom, $peserta['alamat_pengiriman'])
+                                        ->setCellValue('B' . $kolom, $no_doc)
+                                        ->setCellValue('C' . $kolom, $peserta['nama'])
+                                        ->setCellValue('D' . $kolom, $peserta['t4_lahir'] . ", " . tgl_indo($peserta['tgl_lahir']))
+                                        ->setCellValue('E' . $kolom, $peserta['alamat'])
                                         ->setCellValue('F' . $kolom, $peserta['no_wa'])
                                         ->setCellValue('G' . $kolom, $peserta['email'])
                                         ->setCellValue('H' . $kolom, $peserta['nilai_listening'])
@@ -158,7 +159,7 @@ class Tes extends MY_Controller {
                     $writer = new Xlsx($spreadsheet);
         
                     header('Content-Type: application/vnd.ms-excel');
-                    header('Content-Disposition: attachment;filename="'.$tes['nama_tes'].'.xlsx"');
+                    header('Content-Disposition: attachment;filename="'.$tes['nama_tes'].' '.$file_data.'.xlsx"');
                     header('Cache-Control: max-age=0');
         
                     $writer->save('php://output');

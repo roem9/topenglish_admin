@@ -25,6 +25,10 @@
                                 <?= tablerIcon("report", "me-1")?>
                                 Hasil Tes
                             </a>
+                            <a class="dropdown-item" href="<?= base_url()?>tes/export/sertifikat/<?= $id?>">
+                                <?= tablerIcon("report", "me-1")?>
+                                Pemesan Sertifikat
+                            </a>
                         </div>
                     </span>
                 </div>
