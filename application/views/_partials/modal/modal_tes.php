@@ -17,9 +17,15 @@
                             <option value="Latihan TOEFL">Latihan TOEFL</option>
                             <option value="Tes TOEFL Umum">Tes TOEFL Umum</option>
                             <option value="Tes TOEFL Kolaborasi">Tes TOEFL Kolaborasi</option>
+                            <option value="Tes TOEFL Kursusan">Tes TOEFL Kursusan</option>
                             <option value="Latihan Soal">Latihan Soal</option>
                         </select>
                         <label for="">Tipe Tes</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea name="kolaborasi" class="form form-control" style="height: 100px" disabled></textarea>
+                        <label for="" class="col-form-label">Kolaborasi</label>
+                        <small class="form-text text-danger">Isi Field ini jika tipe tes adalah Tes TOEFL Kolaborasi</small>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="date" name="tgl_tes" id="tgl_tes_add" class="form form-control required">
@@ -83,6 +89,7 @@
                             Nilai Structure : $nilai_structure<br>
                             Nilai Reading   : $nilai_reading<br>
                             SKOR TOEFL      : $skor<br>
+                            Untuk memesan sertifikat silakan hubungi admin melalui link berikut : $link
                         </small>
                     </div>
 
@@ -117,9 +124,15 @@
                         <option value="Latihan TOEFL">Latihan TOEFL</option>
                         <option value="Tes TOEFL Umum">Tes TOEFL Umum</option>
                         <option value="Tes TOEFL Kolaborasi">Tes TOEFL Kolaborasi</option>
+                        <option value="Tes TOEFL Kursusan">Tes TOEFL Kursusan</option>
                         <option value="Latihan Soal">Latihan Soal</option>
                     </select>
                     <label for="">Tipe Tes</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea name="kolaborasi" class="form form-control" style="height: 100px"></textarea>
+                    <label for="" class="col-form-label">Kolaborasi</label>
+                    <small class="form-text text-danger">Isi Field ini jika tipe tes adalah Tes TOEFL Kolaborasi</small>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="date" name="tgl_tes" class="form form-control required">
@@ -183,6 +196,7 @@
                         Nilai Structure : $nilai_structure<br>
                         Nilai Reading   : $nilai_reading<br>
                         SKOR TOEFL      : $skor<br>
+                        Untuk memesan sertifikat silakan hubungi admin melalui link berikut : $link
                     </small>
                 </div>
             </div>

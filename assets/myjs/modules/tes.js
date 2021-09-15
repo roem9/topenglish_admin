@@ -73,6 +73,13 @@ $(document).on("click",".editTes", function(){
     })
 
     CKEDITOR.instances['form-text-edit'].setData(result.msg)
+
+    if(result.tipe_tes == "Tes TOEFL Kolaborasi"){
+        $("[name='kolaborasi']").prop("disabled", false);
+    } else {
+        $("[name='kolaborasi']").prop("disabled", true);
+        $("[name='kolaborasi']").val("")
+    }
 })
 
 // menyimpan hasil edit data
@@ -286,3 +293,16 @@ $("#uploadGambar .btnTambah").click(function(){
         })
     }
 });
+
+$("[name='tipe_tes']").change(function() {
+    $("[name='kolaborasi']").val("");
+
+    if($(this).val() == "Tes TOEFL Kolaborasi"){
+        $("[name='kolaborasi']").prop("disabled", false);
+        $("[name='kolaborasi']").addClass("required");
+    } else {
+        $("[name='kolaborasi']").prop("disabled", true);
+        $("[name='kolaborasi']").removeClass("required");
+    }
+    
+})

@@ -320,6 +320,10 @@ class Tes extends MY_Controller {
             $mpdf->SetTitle("{$peserta['nama']}");
             $mpdf->WriteHTML($this->load->view('pages/tes/sertifikat-kolaborasi', $peserta, TRUE));
             $mpdf->Output("{$peserta['nama']}.pdf", "I");
+        } else if($tes['tipe_tes'] == 'Tes TOEFL Kursusan'){
+            $mpdf->SetTitle("{$peserta['nama']}");
+            $mpdf->WriteHTML($this->load->view('pages/tes/sertifikat-kursusan', $peserta, TRUE));
+            $mpdf->Output("{$peserta['nama']}.pdf", "I");
         }
 
     }
