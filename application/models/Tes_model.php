@@ -222,7 +222,7 @@ class Tes_model extends MY_Model {
         $tes = $this->get_one("tes", ["id_tes" => $peserta['id_tes']]);
         
         $date_year = date('Y', strtotime($tes['tgl_tes']));
-        $date_month = date('Y', strtotime($tes['tgl_tes']));
+        $date_month = date('m', strtotime($tes['tgl_tes']));
 
         $this->db->select("CONVERT(no_doc, UNSIGNED INTEGER) AS num");
         $this->db->from("peserta_toefl as a");
