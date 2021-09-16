@@ -221,22 +221,23 @@ class Tes_model extends MY_Model {
         $peserta = $this->get_one("peserta_toefl", ["id" => $id]);
         $tes = $this->get_one("tes", ["id_tes" => $peserta['id_tes']]);
         
-        $date = date('Y', strtotime($tes['tgl_tes']));
+        $date_year = date('Y', strtotime($tes['tgl_tes']));
+        $date_month = date('Y', strtotime($tes['tgl_tes']));
 
         $this->db->select("CONVERT(no_doc, UNSIGNED INTEGER) AS num");
         $this->db->from("peserta_toefl as a");
         $this->db->join("tes as b", "a.id_tes = b.id_tes");
-        $this->db->where("YEAR(tgl_tes)", $date);
+        $this->db->where("YEAR(tgl_tes)", $date_year);
+        $this->db->where("MONTH(tgl_tes)", $date_month);
         $this->db->order_by("num", "DESC");
         $data = $this->db->get()->row_array();
 
         if($data) $no = $data['num']+1;
         else $no = 1;
 
-        if($no > 0 && $no < 10) $no_doc = "000".$no;
-        elseif($no >= 10 && $no < 100) $no_doc = "00".$no;
-        elseif($no >= 100 && $no < 1000) $no_doc = "0".$no;
-        elseif($no >= 1000) $no_doc = $no;
+        if($no > 0 && $no < 10) $no_doc = "00".$no;
+        elseif($no >= 10 && $no < 100) $no_doc = "0".$no;
+        elseif($no >= 100) $no_doc = $no;
         
         $this->load->library('qrcode/ciqrcode'); //pemanggilan library QR CODE
 

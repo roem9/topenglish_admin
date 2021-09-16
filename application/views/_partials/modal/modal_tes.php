@@ -135,6 +135,10 @@
                     <small class="form-text text-danger">Isi Field ini jika tipe tes adalah Tes TOEFL Kolaborasi</small>
                 </div>
                 <div class="form-floating mb-3">
+                    <input type="text" name="size_logo" class="form form-control required number">
+                    <label>Ukuran Logo</label>
+                </div>
+                <div class="form-floating mb-3">
                     <input type="date" name="tgl_tes" class="form form-control required">
                     <label for="">Tgl Tes</label>
                 </div>

@@ -44,45 +44,66 @@
         }
 
         .qrcode{
-            /* background-color: red; */
             width: 105px;
 			position: absolute;
-            left: 170px;
-			top: 108px;
+            left: 512px;
+			bottom: 108px;
             font-size: 35px;
             word-spacing: 3px;
             text-align: center;
         }
 
-        .scan{
+        .in_collab{
             /* background-color: red; */
-            width: 105px;
+            width: 160px;
 			position: absolute;
-            left: 170px;
-			top: 208px;
-            font-size: 10px;
+            right: 80px;
+			top: 90px;
+            font-size: 12px;
+            font-family: 'calibri';
             word-spacing: 3px;
             text-align: center;
         }
 
         .ttd{
             /* background-color: red; */
-            width: 300px;
+            width: 230px;
 			position: absolute;
-            right: 160px;
-			bottom: 155px;
+            right: 100px;
+			bottom: 190px;
             font-size: 35px;
             word-spacing: 3px;
             text-align: center;
+        }
+
+        .logo{
+            /* background-color: blue; */
+            width: 160px;
+			position: absolute;
+            right: 80px;
+			top: 110px;
+            word-spacing: 3px;
+            text-align: center;
+        }
+
+        .kolaborasi{
+            /* background-color: yellow; */
+            width: 160px;
+			position: absolute;
+            right: 80px;
+			top: 183px;
+            font-size: 12px;
+            font-family: 'calibri';
+            word-spacing: 3px;
         }
 
         .nilai{
             /* background-color: red; */
             width: 95px;
 			position: absolute;
-            left: 387px;
-			bottom: 107px;
-            font-size: 24px;
+            right: 385px;
+			bottom: 218px;
+            font-size: 20px;
             font-family: 'calibri';
             word-spacing: 3px;
         }
@@ -92,7 +113,7 @@
             width: 700px;
 			position: absolute;
             left: 210px;
-			top: 295px;
+			top: 288px;
             font-size: 32px;
             /* font-family: 'rockb'; */
             font-family: 'callighraphy';
@@ -122,46 +143,13 @@
             word-spacing: 3px;
         }
         
-        .text-listening{
-            /* background-color: red; */
-            width: 95px;
-			position: absolute;
-            left: 190px;
-			bottom: 262px;
-            font-size: 24px;
-            font-family: 'calibri';
-            word-spacing: 3px;
-        }
-        
-        .text-structure{
-            /* background-color: red; */
-            width: 95px;
-			position: absolute;
-            left: 190px;
-			bottom: 212px;
-            font-size: 24px;
-            font-family: 'calibri';
-            word-spacing: 3px;
-        }
-        
-        .text-reading{
-            /* background-color: red; */
-            width: 95px;
-			position: absolute;
-            left: 190px;
-			bottom: 162px;
-            font-size: 24px;
-            font-family: 'calibri';
-            word-spacing: 3px;
-        }
-
         .listening{
             /* background-color: red; */
             width: 95px;
 			position: absolute;
-            left: 387px;
-			bottom: 262px;
-            font-size: 24px;
+            right: 385px;
+			bottom: 314px;
+            font-size: 20px;
             font-family: 'calibri';
             word-spacing: 3px;
         }
@@ -170,9 +158,9 @@
             /* background-color: red; */
             width: 95px;
 			position: absolute;
-            left: 387px;
-			bottom: 212px;
-            font-size: 24px;
+            right: 385px;
+			bottom: 282px;
+            font-size: 20px;
             font-family: 'calibri';
             word-spacing: 3px;
         }
@@ -181,18 +169,20 @@
             /* background-color: red; */
             width: 95px;
 			position: absolute;
-            left: 387px;
-			bottom: 162px;
-            font-size: 24px;
+            right: 385px;
+			bottom: 250px;
+            font-size: 20px;
             font-family: 'calibri';
             word-spacing: 3px;
         }
 
         .tgl{
+            /* background-color: red; */
+            width: 320px;
 			position: absolute;
-            left: 764px;
-			bottom: 322px;
-            font-size: 24px;
+            left: 508px;
+			top: 382px;
+            font-size: 23.8px;
             font-family: 'calibri';
             word-spacing: 3px;
         }
@@ -201,8 +191,8 @@
             /* background-color: red; */
             width: 150px;
 			position: absolute;
-            left: 879px;
-			top: 157px;
+            left: 118px;
+			top: 174px;
             font-size: 20.5px;
             font-family: 'calibri';
             word-spacing: 3px;
@@ -249,37 +239,34 @@
         }
 
         @page :first {
-            background-image: url("<?= base_url()?>assets/img/sertifikat-kursusan.jpg");
+            background-image: url("<?= base_url()?>assets/img/sertifikat.jpg");
             background-image-resize: 6;
         }
         
     </style>
 </head>
     <body style="text-align: center">
+        <div class="qrcode">
+            <img src="<?= base_url()?>assets/qrcode/<?= $id?>.png" width=100 alt="">
+        </div>
         <div class="ttd">
             <center>
                 <img src="<?= base_url()?>assets/img/ttd.png" width=300 alt="">
             </center>
         </div>
-        <div class="qrcode">
-            <img src="<?= base_url()?>assets/qrcode/<?= $id?>.png" width=100 alt="">
-        </div>
-        <div class="scan">scan for validation</div>
-        <div class="nilai"><p style="text-align: center; margin: 0px"><b><?= round($skor)?></b></p></div>
+        <div class="kolaborasi"><p style="text-align: center; margin: 0px"><?= $kolaborasi?></p></div>
+        <div class="nilai"><p style="text-align: right; margin: 0px"><b><?= round($skor)?></b></p></div>
         <div class="nama"><p style="text-align: center; margin: 0px"><b><?= $nama?></b></p></div>
         <!-- <div class="ttl"><p style="text-align: center; margin: 0px"><?= date("M d Y", strtotime($tgl_lahir))?></p></div> -->
         <!-- <div class="t4"><p style="text-align: center; margin: 0px;"><?= $t4_lahir?></p></div> -->
         <!-- <div class="gender"><p style="text-align: center; margin: 0px"><?= $jk?></p></div> -->
         <!-- <div class="country"><p style="text-align: center; margin: 0px"><?= $country?></p></div> -->
         <!-- <div class="language"><p style="text-align: center; margin: 0px"><?= $language?></p></div> -->
-        <div class="text-listening"><p style="text-align: center; margin: 0px">Listening</p></div>
-        <div class="text-structure"><p style="text-align: center; margin: 0px">Structure</p></div>
-        <div class="text-reading"><p style="text-align: center; margin: 0px">Reading</p></div>
-        <div class="listening"><p style="text-align: center; margin: 0px"><?= $listening?></p></div>
-        <div class="structure"><p style="text-align: center; margin: 0px"><?= $structure?></p></div>
-        <div class="reading"><p style="text-align: center; margin: 0px"><?= $reading?></p></div>
+        <div class="listening"><p style="text-align: right; margin: 0px"><?= $listening?></p></div>
+        <div class="structure"><p style="text-align: right; margin: 0px"><?= $structure?></p></div>
+        <div class="reading"><p style="text-align: right; margin: 0px"><?= $reading?></p></div>
         <div class="no_doc"><p style="text-align: left; margin: 0px"><?= $no_doc?></p></div>
-        <div class="tgl"><p style="text-align: center; margin: 0px">, <?= tgl_sertifikat(date("d-m-Y", strtotime($tgl_tes)))?></p></div>
+        <div class="tgl"><p style="text-align: left; margin: 0px"><i><?= tgl_sertifikat(date("d-m-Y", strtotime($tgl_tes)))?></i></p></div>
         <!-- <div class="tgl_akhir"><p style="text-align: center; margin: 0px"><?= tgl_sertifikat(date("d-m-Y", strtotime('+2 years', strtotime($tgl_tes))))?></p></div> -->
     </body>
 </html>
