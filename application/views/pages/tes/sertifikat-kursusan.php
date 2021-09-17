@@ -70,7 +70,7 @@
             width: 300px;
 			position: absolute;
             right: 160px;
-			bottom: 155px;
+			bottom: 120px;
             font-size: 35px;
             word-spacing: 3px;
             text-align: center;
