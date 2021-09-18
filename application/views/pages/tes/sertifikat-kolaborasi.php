@@ -262,7 +262,7 @@
         <div class="in_collab">in collaboration with</div>
         <div class="kolaborasi"><p style="text-align: center; margin: 0px"><?= $kolaborasi?></p></div>
         <div class="nilai"><p style="text-align: right; margin: 0px"><b><?= round($skor)?></b></p></div>
-        <div class="nama"><p style="text-align: center; margin: 0px"><b><?= $nama?></b></p></div>
+        <div class="nama"><p style="text-align: center; margin: 0px"><b><?= ucwords(strtolower($nama))?></b></p></div>
         <!-- <div class="ttl"><p style="text-align: center; margin: 0px"><?= date("M d Y", strtotime($tgl_lahir))?></p></div> -->
         <!-- <div class="t4"><p style="text-align: center; margin: 0px;"><?= $t4_lahir?></p></div> -->
         <!-- <div class="gender"><p style="text-align: center; margin: 0px"><?= $jk?></p></div> -->
