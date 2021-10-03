@@ -20,7 +20,7 @@ var datatable = $('#dataTable').DataTable({
                 <a href='#uploadGambar' class='uploadGambar' data-bs-toggle='modal' data-id='`+iDisplayIndex.id_tes+`'><span class='avatar avatar-sm' style='background-image: url(`+url_base+`assets/logo/`+iDisplayIndex.id_tes+`.png?t=`+Math.random()+`)'></span></a>`
         }},
         {"data": "tgl_tes"},
-        {"data": "tgl_pengumuman"},
+        // {"data": "tgl_pengumuman"},
         {"data": "nama_soal", render : function(data, row, iDisplayIndex) {
             return data+" ("+iDisplayIndex.soal+")";
         }},
