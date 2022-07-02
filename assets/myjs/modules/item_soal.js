@@ -76,6 +76,10 @@ $(document).on("click", "#addItem .btnNext", function(){
 
         if(item == "soal") {
             count_choice = 4;
+
+            let id_sub = $(form+" input[name='id_sub']").val();
+            let reading = textReading(id_sub, "", "");
+
             html += `
                 <div class="mb-3">
                     <textarea name="soal" class='ckeditor' id='form-text'>{no}</textarea>
@@ -127,7 +131,7 @@ $(document).on("click", "#addItem .btnNext", function(){
                 <div class="form-floating mb-3">
                     <textarea name="jawaban" class="form-control required" data-bs-toggle="autosize" placeholder="Type something…" readonly></textarea>
                     <label for="" class="col-form-label">Jawaban</label>
-                </div>`;
+                </div>`+reading;
 
             
             $(form+" .modal-body").html(html);
@@ -137,6 +141,14 @@ $(document).on("click", "#addItem .btnNext", function(){
             html += `
             <div class="mb-3">
                 <textarea name="soal" class='ckeditor' id='form-text'></textarea>
+            </div>
+            <div class="form-floating mb-3">
+                <select name="tampil" class="form-control required">
+                    <option value="">Pilih</option>
+                    <option value="Ya">Ya</option>
+                    <option value="Tidak">Tidak</option>
+                </select>
+                <label for="">Tampilkan Item Ini?</label>
             </div>`;
 
             $(form+" .modal-body").html(html);
@@ -272,21 +284,23 @@ $(document).on("click", "#addItem .btnAdd", function(){
                 let soal = CKEDITOR.instances['form-text'].getData();
                 soal = soal.replace(/"/g, "'");
                 let pilihan = "";
-
                 $(form+" [name='pilihan[]']").each(function(){
-                    if($(this).val() != ""){
-                        data_pilihan = $(this).val();
-                        data_pilihan = data_pilihan.replace(/"/g, '&quot;');
-                        pilihan += `"`+data_pilihan+`",`;
-                    }
+                    // tambahan
+                    pilihan_jawaban = $(this).val().replace(/"/g, "&quot;")
+                    pilihan += `"`+pilihan_jawaban+`",`;
+                    // tambahan
+                    // pilihan += `"`+$(this).val()+`",`;
                 });
 
                 // remove last character 
                 pilihan = pilihan.slice(0, -1)
 
                 let jawaban = $(form+" textarea[name='jawaban']").val();
-                jawaban = jawaban.replace(/"/g, '&quot;');
+                // tambahan
+                jawaban = jawaban.replace(/"/g, "&quot;");
+                // tambahan
                 let penulisan = $(form+" select[name='penulisan']").val();
+                let id_text = $(form+" select[name='id_text']").val();
     
                 let eror = required(form);
     
@@ -300,7 +314,7 @@ $(document).on("click", "#addItem .btnAdd", function(){
                     })
                 } else {
                     let data_soal = `{"soal":"`+soal+`","pilihan":[`+pilihan+`],"jawaban":"`+jawaban+`"}`;
-                    let data = {id_sub:id_sub, tipe_soal:tipe_soal, item:item, data_soal:data_soal, penulisan:penulisan};
+                    let data = {id_sub:id_sub, tipe_soal:tipe_soal, item:item, data_soal:data_soal, penulisan:penulisan, id_text:id_text};
                     let result = ajax(url_base+"subsoal/add_item_soal", "POST", data);
                     if(result == 1){
                         Swal.fire({
@@ -341,6 +355,7 @@ $(document).on("click", "#addItem .btnAdd", function(){
                 let soal = CKEDITOR.instances['form-text'].getData();
                 soal = soal.replace(/"/g, "'");
                 let penulisan = $(form+" select[name='penulisan']").val();
+                let tampil = $(form+" select[name='tampil']").val();
     
                 let eror = required(form);
     
@@ -353,7 +368,7 @@ $(document).on("click", "#addItem .btnAdd", function(){
                         text: 'lengkapi isi form terlebih dahulu'
                     })
                 } else {
-                    let data = {id_sub:id_sub, tipe_soal:tipe_soal, item:item, data_soal:soal, penulisan:penulisan};
+                    let data = {id_sub:id_sub, tipe_soal:tipe_soal, item:item, data_soal:soal, penulisan:penulisan, tampil:tampil};
                     let result = ajax(url_base+"subsoal/add_item_soal", "POST", data);
                     if(result == 1){
                         Swal.fire({
@@ -537,6 +552,9 @@ $(document).on("click", ".editItem", function(){
             else answer_choice += `<option value="Pilihan `+ String.fromCharCode(i) +`">Pilihan `+ String.fromCharCode(i) +`</option>`;
         })
 
+        let id_sub = $("#addItem [name='id_sub']").val()
+        let reading = textReading(id_sub, result.id_text);
+
         html = `
             <div class="mb-3">
                 <textarea name="soal" class='ckeditor' id='form-text-edit'>`+result.soal+`</textarea>
@@ -569,7 +587,7 @@ $(document).on("click", ".editItem", function(){
             <div class="form-floating mb-3">
                 <textarea name="jawaban" class="form-control required" data-bs-toggle="autosize" placeholder="Type something…" readonly>`+result.jawaban+`</textarea>
                 <label for="" class="col-form-label">Jawaban</label>
-            </div>`;
+            </div>`+reading;
 
         
         $(form+" .modal-body").html(html);
@@ -586,10 +604,30 @@ $(document).on("click", ".editItem", function(){
             ltr = "selected";
         }
 
+        let ya = "";
+        let tidak = "";
+
+        if(result.tampil == "Ya"){
+            ya = "selected"
+        }
+
+        if(result.tampil == "Tidak"){
+            tidak = "selected"
+        }
+
         html = `
             <div class="mb-3">
                 <textarea name="soal" class='ckeditor' id='form-text-edit'>`+result.data+`</textarea>
-            </div>`;
+            </div>
+            <div class="form-floating mb-3">
+                <select name="tampil" class="form-control required">
+                    <option value="">Pilih</option>
+                    <option value="Ya" `+ya+`>Ya</option>
+                    <option value="Tidak" `+tidak+`>Tidak</option>
+                </select>
+                <label for="">Tampilkan Item Ini?</label>
+            </div>
+            `;
 
         $(form+" .modal-body").html(html);
         CKEDITOR.replace('form-text-edit');
@@ -666,20 +704,25 @@ $(document).on("click", "#editItem .btnEdit", function(){
                 let soal = CKEDITOR.instances['form-text-edit'].getData();
                 soal = soal.replace(/"/g, "'");
                 
+                soal = soal.replace(/"/g, "'");
                 let pilihan = "";
                 $(form+" [name='pilihan[]']").each(function(){
-                    if($(this).val() != ""){
-                        data_pilihan = $(this).val();
-                        data_pilihan = data_pilihan.replace(/"/g, '&quot;');
-                        pilihan += `"`+data_pilihan+`",`;
-                    }
+                    // tambahan
+                    pilihan_jawaban = $(this).val().replace(/"/g, "&quot;")
+                    pilihan += `"`+pilihan_jawaban+`",`;
+                    // tambahan
+                    // pilihan += `"`+$(this).val()+`",`;
                 });
                 // remove last character 
                 pilihan = pilihan.slice(0, -1)
 
                 let jawaban = $(form+" textarea[name='jawaban']").val();
-                jawaban = jawaban.replace(/"/g, '&quot;');
+                // tambahan
+                jawaban = jawaban.replace(/"/g, "&quot;");
+                // tambahan
                 let penulisan = $(form+" select[name='penulisan']").val();
+
+                let id_text = $(form+" select[name='id_text']").val();
     
                 let eror = required(form);
     
@@ -694,7 +737,7 @@ $(document).on("click", "#editItem .btnEdit", function(){
                 } else {
                     let data_soal = `{"soal":"`+soal+`","pilihan":[`+pilihan+`],"jawaban":"`+jawaban+`"}`;
                     // let data_soal = soal+"###"+pilihan_a+"///"+pilihan_b+"///"+pilihan_c+"///"+pilihan_d+"###"+jawaban
-                    let data = {id_item:id_item, data_soal:data_soal, penulisan:penulisan};
+                    let data = {id_item:id_item, data_soal:data_soal, penulisan:penulisan, id_text:id_text};
                     let result = ajax(url_base+"subsoal/edit_item_soal", "POST", data);
                     if(result == 1){
                         Swal.fire({
@@ -735,6 +778,7 @@ $(document).on("click", "#editItem .btnEdit", function(){
                 let soal = CKEDITOR.instances['form-text-edit'].getData();
                 soal = soal.replace(/"/g, "'");
                 let penulisan = $(form+" select[name='penulisan']").val();
+                let tampil = $(form+" select[name='tampil']").val();
     
                 let eror = required(form);
     
@@ -747,7 +791,7 @@ $(document).on("click", "#editItem .btnEdit", function(){
                         text: 'lengkapi isi form terlebih dahulu'
                     })
                 } else {
-                    let data = {id_item:id_item, data_soal:soal, penulisan:penulisan};
+                    let data = {id_item:id_item, data_soal:soal, penulisan:penulisan, tampil:tampil};
                     let result = ajax(url_base+"subsoal/edit_item_soal", "POST", data);
                     if(result == 1){
                         Swal.fire({
@@ -860,3 +904,27 @@ $(document).on("click", ".saveUrutan", function(){
         }
     })
 })
+
+function textReading(id_sub, id_text = "", display = ""){
+    let result = ajax(url_base+"subsoal/get_text_reading", "POST", {id_sub:id_sub});
+
+    html = `
+        <div class="form-floating mb-3" style="display:`+display+`">
+            <select name="id_text" class="form-control">
+                <option value="0">Tidak Ada Text</option>
+        `;
+
+    result.forEach((text) => {
+        if(id_text == text.id_item)
+            html += `<option value="`+text.id_item+`" selected>`+text.data+`</option>`
+        else 
+            html += `<option value="`+text.id_item+`">`+text.data+`</option>`
+    })
+
+    html += `
+        </select>
+        <label for="">Pilih Text Reading</label>
+    </div>`
+
+    return html
+}

@@ -301,3 +301,10 @@
 
         return $soal;
     }
+
+    function jum_sertifikat($id_tes){
+        $CI =& get_instance();
+        $sertifikat = $CI->db->from("peserta_toefl")->where(["id_tes" => $id_tes, "no_doc <>" => ""])->get()->result_array();
+        
+        return COUNT($sertifikat);
+    }

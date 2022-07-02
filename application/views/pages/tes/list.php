@@ -43,6 +43,7 @@
                                         <!-- <th class="text-dark desktop w-1" style="font-size: 11px">Tgl Pengumuman</th> -->
                                         <th class="text-dark desktop w-1" style="font-size: 11px">Soal</th>
                                         <th class="text-dark desktop w-1" style="font-size: 11px">Peserta</th>
+                                        <th class="text-dark desktop w-1" style="font-size: 11px">Sertifikat</th>
                                         <th class="text-dark desktop w-1" style="font-size: 11px">Status</th>
                                         <th class="text-dark desktop w-1" style="font-size: 11px">Menu</th>
                                         <th class="text-dark none" style="font-size: 11px">Password</th>

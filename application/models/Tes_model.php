@@ -15,6 +15,7 @@ class Tes_model extends MY_Model {
         $this->datatables->join("soal as b", "a.id_soal = b.id_soal");
         $this->datatables->where("a.hapus", 0);
 
+        $this->datatables->add_column("sertifikat", '$1', 'jum_sertifikat(id_tes)');
         $this->datatables->add_column("soal", '$1', 'jum_soal(id_soal)');
         $this->datatables->add_column("peserta", '$1', 'peserta(peserta_latihan, peserta_toefl)');
         $this->datatables->add_column('action','

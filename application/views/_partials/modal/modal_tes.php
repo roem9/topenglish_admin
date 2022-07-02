@@ -77,7 +77,7 @@
                             $poin = total poin, $nama = nama, $email = email, $tes = Nama Tes, $tgl_tes = Tanggal Tes, $tgl_pengumuman = Tanggal Pengumuman <br><br>
                             <b>Tes TOEFL : </b><br>
                             $nama = nama, $t4_lahir = Tempat Lahir, $tgl_lahir = Tgl Lahir, $alamat = Alamat, $no_wa = No. WA, $email = email, $jk = gende, $nilai_listening = Nilai Listening, $nilai_structure = Nilai Structure, $nilai_reading = Nilai Reading, $skor = Skor Tes,
-                            $tes = Nama Tes, $tgl_tes = Tanggal Tes, $tgl_pengumuman = Tanggal Pengumuman, $link = Link<br><br>
+                            $tes = Nama Tes, $tgl_tes = Tanggal Tes, $tgl_pengumuman = Tanggal Pengumuman, $link = Link, $pretest = Link Konfirmasi Pretest, $progress_test = Link Konfirmasi Progress Test, $post_test = Link Konfirmasi Post Test<br><br>
                             <b>Contoh Pesan : </b><br>
                             Selamat Anda Telah Menyelesaikan $tes, Berikut Ini Data Diri Anda :<br>
                             Nama        : $nama<br>
@@ -188,7 +188,7 @@
                         $poin = total poin, $nama = nama, $email = email, $tes = Nama Tes, $tgl_tes = Tanggal Tes, $tgl_pengumuman = Tanggal Pengumuman <br><br>
                         <b>Tes TOEFL : </b><br>
                         $nama = nama, $t4_lahir = Tempat Lahir, $tgl_lahir = Tgl Lahir, $alamat = Alamat, $no_wa = No. WA, $email = email, $jk = gende, $nilai_listening = Nilai Listening, $nilai_structure = Nilai Structure, $nilai_reading = Nilai Reading, $skor = Skor Tes,
-                        $tes = Nama Tes, $tgl_tes = Tanggal Tes, $tgl_pengumuman = Tanggal Pengumuman, $link = Link<br><br>
+                        $tes = Nama Tes, $tgl_tes = Tanggal Tes, $tgl_pengumuman = Tanggal Pengumuman, $link = Link, $pretest = Link Konfirmasi Pretest, $progress_test = Link Konfirmasi Progress Test, $post_test = Link Konfirmasi Post Test<br><br>
                         <b>Contoh Pesan : </b><br>
                         Selamat Anda Telah Menyelesaikan $tes, Berikut Ini Data Diri Anda :<br>
                         Nama        : $nama<br>

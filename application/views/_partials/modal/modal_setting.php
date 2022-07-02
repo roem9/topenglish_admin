@@ -24,6 +24,18 @@
                     <input type="text" name="no_wa" class="form form-control required number">
                     <label>No WA</label>
                 </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="wa_pretest" class="form form-control required number">
+                    <label>No WA PreTest</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="wa_progress_test" class="form form-control required number">
+                    <label>No WA Progress Test</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="wa_post_test" class="form form-control required number">
+                    <label>No WA Post Test</label>
+                </div>
             </div>
             <div class="modal-footer">
                 <div class="d-flex justify-content-end">

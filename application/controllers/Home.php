@@ -84,6 +84,9 @@ class Home extends MY_Controller {
         $data['web_admin'] = $this->Main_model->get_one("config", ["field" => "web admin"]);
         $data['web_peserta'] = $this->Main_model->get_one("config", ["field" => "web peserta"]);
         $data['no_wa'] = $this->Main_model->get_one("config", ["field" => "no_wa"]);
+        $data['wa_pretest'] = $this->Main_model->get_one("config", ["field" => "wa_pretest"]);
+        $data['wa_progress_test'] = $this->Main_model->get_one("config", ["field" => "wa_progress_test"]);
+        $data['wa_post_test'] = $this->Main_model->get_one("config", ["field" => "wa_post_test"]);
 
         echo json_encode($data);
     }

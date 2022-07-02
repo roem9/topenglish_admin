@@ -106,11 +106,25 @@ class Subsoal_model extends MY_Model {
             } else {
                 return 0;
             }
-        } else {
+        } else if($_POST['item'] == "soal"){
             $data = [
                 "id_sub" => $soal['id_sub'],
                 "item" => $this->input->post("item"),
                 "data" => trim($this->input->post("data_soal")),
+                "penulisan" => "LTR",
+                "urutan" => $urutan,
+                "id_text" => $this->input->post("id_text"),
+            ];
+    
+            $query = $this->Main_model->add_data("item_soal", $data);
+            if($query) return 1;
+            else return 0;
+        } else if($_POST['item'] == "petunjuk"){
+            $data = [
+                "id_sub" => $soal['id_sub'],
+                "item" => $this->input->post("item"),
+                "data" => trim($this->input->post("data_soal")),
+                "tampil" => $this->input->post("tampil"),
                 "penulisan" => "LTR",
                 "urutan" => $urutan,
             ];
@@ -185,10 +199,22 @@ class Subsoal_model extends MY_Model {
     public function edit_item_soal(){
         $id_item = $this->input->post("id_item");
 
-        $data = [
-            "data" => $this->input->post("data_soal"),
-            "penulisan" => $this->input->post("penulisan"),
-        ];
+        $item = $this->Main_model->get_one("item_soal", ['id_item' => $id_item]);
+
+        if($item['item'] == "petunjuk"){
+            $data = [
+                "data" => $this->input->post("data_soal"),
+                "penulisan" => $this->input->post("penulisan"),
+                "tampil" => $this->input->post("tampil"),
+            ];
+        } else if($item['item'] == "soal"){
+            $data = [
+                "data" => $this->input->post("data_soal"),
+                "penulisan" => $this->input->post("penulisan"),
+                "id_text" => $this->input->post("id_text"),
+            ];
+        }
+
 
         $query = $this->Main_model->edit_data("item_soal", ["id_item" => $id_item], $data);
         if($query) return 1;
@@ -285,6 +311,13 @@ class Subsoal_model extends MY_Model {
             }
             
         }
+    }
+
+    public function get_text_reading(){
+        $id_sub = $this->input->post("id_sub");
+
+        $data = $this->get_all("item_soal", ["md5(id_sub)" => $id_sub, "item" => "petunjuk", "tampil" => "Tidak"]);
+        return $data;
     }
 }
 
