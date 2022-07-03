@@ -24,11 +24,11 @@ var datatable = $('#dataTable').DataTable({
         {"data": "nama_soal", render : function(data, row, iDisplayIndex) {
             return data+" ("+iDisplayIndex.soal+")";
         }},
-        {"data": "peserta", render : function (data) {
-            if(jQuery.browser.mobile == true) return data
-            else return "<center>"+data+"</center>"
+        {"data": "peserta", render : function (data, row, iDisplayIndex) {
+            if(jQuery.browser.mobile == true) return data+`/`+iDisplayIndex.sertifikat
+            else return "<center>"+data+"/"+iDisplayIndex.sertifikat+"</center>"
         }},
-        {"data": "sertifikat"},
+        // {"data": "sertifikat"},
         {"data": "status", render : function(data, row, iDisplayIndex){
             (data == 'Berjalan' ? status = "checked" : status = "");
             
