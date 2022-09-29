@@ -57,7 +57,7 @@ class Tes_model extends MY_Model {
         $config = $this->config();
 
         if($tipe == "TOAFL" || $tipe == "TOEFL"){
-            $this->datatables->select("id, id_tes, nama, t4_lahir, tgl_lahir, alamat, alamat_pengiriman, no_wa, email, nilai_listening, nilai_structure, nilai_reading, sertifikat, file, no_doc");
+            $this->datatables->select("id, id_tes, nama, t4_lahir, tgl_lahir, alamat, alamat_pengiriman, no_wa, email, nilai_listening, nilai_structure, nilai_reading, sertifikat, file, no_doc, tgl_input");
             $this->datatables->from("peserta_toefl");
             $this->datatables->where("md5(id_tes)", $id);
             $this->datatables->edit_column("nilai_listening", '$1', 'poin("Listening", nilai_listening)');

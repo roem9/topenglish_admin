@@ -19,6 +19,7 @@ if(tipe == "TOEFL" || tipe == "TOAFL"){
         serverSide: true,
         ajax: {"url": url_base+"tes/loadHasil/"+tipe+"/"+id_tes, "type": "POST"},
         columns: [
+            {"data": "tgl_input"},
             {"data": "nama"},
             {"data": "full", render : function(data, row, iDisplayIndex){
                 if(iDisplayIndex.no_doc == ""){
@@ -61,7 +62,7 @@ if(tipe == "TOEFL" || tipe == "TOAFL"){
         },
         "columnDefs": [
         { "searchable": false, "targets": "" },  // Disable search on first and last columns
-        { "targets": [1, 5, 6], "orderable": false},
+        { "targets": [2, 6, 7], "orderable": false},
         ],
         "rowReorder": {
             "selector": 'td:nth-child(0)'

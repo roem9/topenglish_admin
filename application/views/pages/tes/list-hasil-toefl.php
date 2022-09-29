@@ -40,6 +40,7 @@
                             <table id="dataTable" class="table card-table table-vcenter text-nowrap text-dark">
                                 <thead>
                                     <tr>
+                                        <th class="text-dark desktop mobile-l mobile-p tablet-l tablet-p" style="font-size: 11px">Tgl Input</th>
                                         <th class="text-dark desktop mobile-l mobile-p tablet-l tablet-p" style="font-size: 11px">Nama Peserta</th>
                                         <th class="text-dark desktop w-1" style="font-size: 11px">Sertifikat</th>
                                         <th class="text-dark desktop w-1" style="font-size: 11px">L</th>
