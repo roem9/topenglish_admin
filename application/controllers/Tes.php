@@ -273,7 +273,7 @@ class Tes extends MY_Controller {
         $peserta['listening'] = poin("Listening", $peserta['nilai_listening']);
         $peserta['structure'] = poin("Structure", $peserta['nilai_structure']);
         $peserta['reading'] = poin("Reading", $peserta['nilai_reading']);
-        $peserta['tgl_tes'] = $tes['tgl_tes'];
+        $peserta['tgl_tes'] = $peserta['tgl_input'];
 
         $skor = ((poin("Listening", $peserta['nilai_listening']) + poin("Structure", $peserta['nilai_structure']) + poin("Reading", $peserta['nilai_reading'])) * 10) / 3;
         $peserta['skor'] = $skor;
