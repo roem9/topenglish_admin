@@ -58,7 +58,8 @@
             width: 160px;
 			position: absolute;
             right: 80px;
-			top: 90px;
+			/* top: 90px; */
+			top: 140px;
             font-size: 12px;
             font-family: 'calibri';
             word-spacing: 3px;
@@ -81,7 +82,8 @@
             width: 160px;
 			position: absolute;
             right: 80px;
-			top: 110px;
+			/* top: 110px; */
+			top: 160px;
             word-spacing: 3px;
             text-align: center;
         }
@@ -91,7 +93,8 @@
             width: 160px;
 			position: absolute;
             right: 80px;
-			top: 183px;
+			/* top: 183px; */
+			top: 233px;
             font-size: 12px;
             font-family: 'calibri';
             word-spacing: 3px;
